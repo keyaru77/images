@@ -24,7 +24,7 @@ app.get('/img', async (req, res, next) => {
 });
 const fetchChapterData = async (endpoint) => {
   try {
-    const response = await axios.get(`${baseURL}/chapter/${endpoint}`);
+    const response = await axios.get(`https://api.koranime.fun/chapter/${endpoint}`);
     return response.data;
   } catch (error) {
     console.error('Terjadi kesalahan saat mengambil data chapter.:', error);
