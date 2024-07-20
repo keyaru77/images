@@ -23,6 +23,17 @@ app.get('/img', async (req, res, next) => {
   }
 });
 
+// Function to fetch chapter data
+async function fetchChapterData(endpoint) {
+  try {
+    const response = await axios.get(`https://api.koranime.fun/manga/${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching chapter data:', error);
+    return null;
+  }
+}
+
 app.get('/next-chapter/:endpoint', async (req, res, next) => {
   const endpoint = req.params.endpoint;
   const data = await fetchChapterData(endpoint);
