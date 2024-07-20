@@ -22,17 +22,15 @@ app.get('/img', async (req, res, next) => {
     next(new Error('Error proxying image'));
   }
 });
-
-// Function to fetch chapter data
-async function fetchChapterData(endpoint) {
+const fetchChapterData = async (endpoint) => {
   try {
-    const response = await axios.get(`https://api.koranime.fun/manga/${endpoint}`);
+    const response = await axios.get(`${baseURL}/chapter/${endpoint}`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching chapter data:', error);
+    console.error('Terjadi kesalahan saat mengambil data chapter.:', error);
     return null;
   }
-}
+};
 
 app.get('/next-chapter/:endpoint', async (req, res, next) => {
   const endpoint = req.params.endpoint;
