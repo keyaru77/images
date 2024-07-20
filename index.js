@@ -23,6 +23,15 @@ app.get('/img', async (req, res, next) => {
   }
 });
 
+app.get('/next-chapter/:endpoint', async (req, res, next) => {
+  const endpoint = req.params.endpoint;
+  const data = await fetchChapterData(endpoint);
+  if (!data) {
+    return next(new Error('Chapter not found'));
+  }
+  res.json(data);
+});
+
 // Endpoint untuk mendapatkan jumlah views berdasarkan ID
 app.get('/view/:id', (req, res) => {
   const id = req.params.id;
